@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Tasklist = (props) => {
-    const {item, key} = props;
+    const {item, logID} = props;
 
-
+   const values = Object.values(item)
 
     return <>
-        {Object.values(item).map((data) => {
-            return <p>{data}</p>
-        })}
-    
+    <div>
+        <p>{values[0]}</p>
+        <p>{values[1]}</p>
+        <p>{values[2]}</p>
+
+        </div>
     </>
 }
 

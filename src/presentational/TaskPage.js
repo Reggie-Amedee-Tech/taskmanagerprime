@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import Taskform from "../components/Taskform";
+import TaskEditPage from "./TaskEditPage";
 
 const TaskPage = (props) => {
     const [taskName, setTaskName] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
     const [taskDate, setTaskDate] = useState('');
+    
 
-    const { addTask } = props;
+    const { addTask, isEditing, tasks, setCurrentTask, currentTask, handleEditSubmit } = props;
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -16,9 +18,12 @@ const TaskPage = (props) => {
         setTaskDate('')
     }
 
-
+    
 
     return <>
+
+    {isEditing === true ? <TaskEditPage tasks={tasks} setCurrentTask={setCurrentTask} currentTask={currentTask} handleEditSubmit={handleEditSubmit}/> :
+    
     <Taskform 
     taskName={taskName}
     setTaskName={setTaskName}
@@ -27,6 +32,9 @@ const TaskPage = (props) => {
     taskDescription={taskDescription}
     setTaskDescription={setTaskDescription}
     onSubmitHandler={onSubmitHandler}/>
+
+}
+
     </>
 }
 

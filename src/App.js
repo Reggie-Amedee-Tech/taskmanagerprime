@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState} from 'react'
 import TaskPage from './presentational/TaskPage';
 import TasklistPage from './presentational/TasklistPage';
+import {Routes, Route, useNavigate} from 'react-router-dom'
 import TaskEditPage from './presentational/TaskEditPage';
 import uuid from 'react-uuid';
 
@@ -13,6 +14,7 @@ function App() {
   const [isEditing, setIsEditing] = useState(false)
   const [currentTask, setCurrentTask] = useState({})
   
+  const navigate = useNavigate();
 
   const addTask = (taskName, taskDescription, taskDate) => {
     setTasks([...tasks,
@@ -24,6 +26,7 @@ function App() {
       
     }])
 
+    navigate('/alltasks')
     
   }
 
@@ -60,8 +63,12 @@ function App() {
 
   return (
     <div className="App">
-      <TaskPage tasks={tasks} addTask={addTask} isEditing={isEditing} setCurrentTask={setCurrentTask} currentTask={currentTask} handleEditSubmit={handleEditSubmit}/>
-      <TasklistPage tasks={tasks} handleEditClick={handleEditClick} currentTask={currentTask} deleteTask={deleteTask}/>
+      <Routes>
+
+      <Route path="/" element={<TaskPage tasks={tasks} addTask={addTask} isEditing={isEditing} setCurrentTask={setCurrentTask} currentTask={currentTask} handleEditSubmit={handleEditSubmit}/>}></Route>
+      <Route path="/alltasks" element={<TasklistPage tasks={tasks} handleEditClick={handleEditClick} currentTask={currentTask} deleteTask={deleteTask}/>}></Route>
+      
+      </Routes>
     </div>
   );
 }

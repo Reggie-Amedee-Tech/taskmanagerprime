@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import Tasklist from "../components/Tasklist";
 import uuid from "react-uuid";
 import { useNavigate } from "react-router";
+import classes from './TasklistPage.module.css'
 
 const TasklistPage = (props) => {
 
@@ -16,12 +17,15 @@ const logID = (id) => {
         {tasks.map((item) => {
 
             return <div key={uuid()}>
-                <div>
-                    <Tasklist item={item}/>
-                    <button onClick={() => {handleEditClick(item)}}>Edit Task</button>
-                    <button onClick={() => {deleteTask(item.id)}}>Delete Task</button>
+                <div className={classes.taskListContainer}>
+                    <Tasklist item={item} handleEditClick={handleEditClick} deleteTask={deleteTask}/>
+                    <div className={classes.buttons}>
+                    <button onClick={() => {handleEditClick(item)}} className={classes.button}>Edit Task</button>
+                    <button onClick={() => {deleteTask(item.id)}} className={classes.button}>Delete Task</button>
+                    <button onClick={() => {navigate(-1)}} className={classes.button}>Go Back</button>
+                    </div>
                 </div>
-                <button onClick={() => {navigate(-1)}}>Go Back</button>
+                
             </div>
         })}
     </>

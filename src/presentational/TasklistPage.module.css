@@ -1,0 +1,38 @@
+.taskListContainer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+
+
+
+
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0px auto;
+    margin-top: 5px;
+    width: 400px;
+}
+
+.button {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #228B22;
+    font-size: large;
+    box-shadow: 3px 3px;
+}
+
+.button:hover {
+    background-color: #4F7942;
+}
+
+.button:active {
+    background-color: #4F7942;
+    box-shadow: 0px 0px;;
+}

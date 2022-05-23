@@ -1,18 +1,9 @@
 import React from "react";
-import classes from './TaskEdit.Module.css'
+import classes from './TaskEdit.module.css'
 
 const TaskEdit = (props) => {
 
     const {
-        taskNameEdit,
-        setTaskNameEdit,
-        taskDescriptionEdit,
-        setTaskDescriptionEdit,
-        taskDateEdit,
-        setTaskDateEdit,
-        handleEditClick,
-        tasks,
-        setCurrentTask,
         currentTask,
         handleTaskNameChange,
         handleTaskDescriptionChange,
@@ -22,36 +13,47 @@ const TaskEdit = (props) => {
 
 
     return <>
-        
-            <form onSubmit={handleEditSubmit}>
+
+        <form onSubmit={handleEditSubmit}>
             <div className={classes.Div}>
-                <label>Edit Task Name</label>
-                <input
-                    type="text"
-                    value={currentTask.taskName}
-                    onChange={handleTaskNameChange}
-                    >
-                        
-                    </input>
-                <label>Edit Task Description</label>
-                <input
-                    type="text"
-                    value={currentTask.taskDescription}
-                    onChange={handleTaskDescriptionChange}>
+                <table className={classes.table}>
+                    <tbody>
+                        <tr>
+                            <th className={classes.tablehead}>Task Name</th>
+                            <th className={classes.tablehead}>Task Description</th>
+                            <th className={classes.tablehead3}>Task Date</th>
+                        </tr>
 
-                    </input>
-                <label>Edit Task Date</label>
-                <input
-                    type="text"
-                    value={currentTask.taskDate}
-                    onChange={handleTaskDateChange}>
+                        <tr>
+                            <td className={classes.tabledata}><input
+                                type="text"
+                                value={currentTask.taskName}
+                                onChange={handleTaskNameChange}
+                            >
 
-                    </input>
-                    </div>
-                    <button type="submit">Edit Task</button>
-            </form>
-            
-        
+                            </input></td>
+                            <td className={classes.tabledata}><input
+                                type="text"
+                                value={currentTask.taskDescription}
+                                onChange={handleTaskDescriptionChange}>
+
+                            </input></td>
+                            <td className={classes.tabledata3}><input
+                                type="text"
+                                value={currentTask.taskDate}
+                                onChange={handleTaskDateChange}>
+
+                            </input></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="submit" className={classes.button}>Submit Edit</button>
+
+        </form>
+
+
 
     </>
 }

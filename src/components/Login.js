@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "./Auth";
 
 const Login = () => {
+    const [user, setUser] = useState('')
+    const auth = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const redirectPath = location.state?.path || '/'
+
+    const handleLogin = () => {
+        auth.login(user)
+        navigate(redirectPath, {replace: true})
+    }
+
 
     return <>
-    <form>
+        
         <table>
             <tbody>
                 <tr>
@@ -12,13 +26,17 @@ const Login = () => {
                 <tr>
                     <td>
                         <input type="text"
-                        placeholder="Input Username" required>
+                        placeholder="Input Username" 
+                        onChange={(e) => setUser(e.target.value)}
+                        
+                        required>
                         </input>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </form>
+        <button onClick={handleLogin}>Sign In </button>
+    
     </>
 }
 

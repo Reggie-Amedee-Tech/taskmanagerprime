@@ -1,0 +1,16 @@
+.Div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 55vh;
+}
+
+.NavLink {
+    padding: 10px;
+    background-color: aquamarine;
+    width: 150px;
+    margin: 0 auto;
+    text-decoration: none;
+    font-size: larger;
+    color: black;
+}

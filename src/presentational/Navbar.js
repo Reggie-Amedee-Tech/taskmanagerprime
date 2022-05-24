@@ -7,8 +7,10 @@ const Navbar = () => {
 
     return <>
     <div className="primary">
-    <NavLink to='/'>Create Task</NavLink>
+    <NavLink to="/">Home</NavLink>
+    <NavLink to='/create'>Create Task</NavLink>
     <NavLink to='/alltasks'>All Tasks</NavLink>
+    <NavLink to="/login">Login</NavLink>
     </div>
     </>
 }

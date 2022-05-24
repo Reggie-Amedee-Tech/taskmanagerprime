@@ -1,11 +1,15 @@
 import './App.css';
 import React, { useState } from 'react'
+import { AuthProvider } from './components/Auth';
+import { RequireAuth } from './components/RequireAuth';
 import TaskPage from './presentational/TaskPage';
 import TasklistPage from './presentational/TasklistPage';
 import NoMatchPage from './presentational/NoMatchPage';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Navbar from './presentational/Navbar';
 import uuid from 'react-uuid';
+import HomePage from './presentational/HomePage';
+import LoginPage from './presentational/LoginPage';
 
 
 
@@ -27,7 +31,7 @@ function App() {
 
     }])
 
-    navigate('/alltasks')
+    navigate('alltasks')
 
   }
 
@@ -37,14 +41,13 @@ function App() {
     })
     setTasks(updatedItem)
     setIsEditing(false)
-    console.log(id)
-    console.log(updatedItem)
+    
   }
 
   const handleEditClick = (task) => {
     setIsEditing(true)
     setCurrentTask({ ...task })
-    navigate('/')
+    navigate('create')
 
   }
 
@@ -65,16 +68,25 @@ function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
       <nav>
         <Navbar />
       </nav>
     <section>
       <Routes>
-        <Route path="/" element={<TaskPage tasks={tasks} addTask={addTask} isEditing={isEditing} setCurrentTask={setCurrentTask} currentTask={currentTask} handleEditSubmit={handleEditSubmit} />}></Route>
-        <Route path="alltasks" element={<TasklistPage tasks={tasks} handleEditClick={handleEditClick} currentTask={currentTask} deleteTask={deleteTask} />} />
+        <Route path="/login" element={<LoginPage />}/>
+        <Route path="/" element={<HomePage />}/>
+
+        <Route path="/create" element={<RequireAuth>
+          <TaskPage tasks={tasks} addTask={addTask} isEditing={isEditing} setCurrentTask={setCurrentTask} currentTask={currentTask} handleEditSubmit={handleEditSubmit} />
+        </RequireAuth>}></Route>
+        <Route path="alltasks" element={<RequireAuth>
+          <TasklistPage tasks={tasks} handleEditClick={handleEditClick} currentTask={currentTask} deleteTask={deleteTask} />
+        </RequireAuth>} />
         <Route path="*" element={<NoMatchPage />}></Route>
       </Routes>
       </section>
+      </AuthProvider>
     </div>
   );
 }

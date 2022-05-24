@@ -1,0 +1,16 @@
+.Container {
+    height: 100vh;
+    width: 100%;
+}
+
+
+
+.Div {
+    background-image: url('./pictures/marketing-productivity_-what-it-is-how-to-measure-it-610cf80ee849a-sej-1520x800.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: auto;
+    
+}
+
